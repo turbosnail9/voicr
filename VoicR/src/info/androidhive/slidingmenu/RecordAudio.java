@@ -152,19 +152,4 @@ private View.OnClickListener btnClick = new View.OnClickListener() {
     }
 };
 
-@Override
-public void onDestroyView() {
-    super.onDestroyView();
-    Fragment f = (Fragment) getFragmentManager()
-                                         .findFragmentById(R.id.fragment1);
-    if (f != null) 
-        getFragmentManager().beginTransaction().remove(f).commit();
-}
-//@Override
-//public boolean onKeyDown(int keyCode, KeyEvent event) {
-  //  if (keyCode == KeyEvent.KEYCODE_BACK) {
-    //	 finish();
-   // }
-    //return super.onKeyDown(keyCode, event);
-//}
 }

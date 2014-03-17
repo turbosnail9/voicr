@@ -8,35 +8,33 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 public class RecordAudioFragment extends Fragment {
-	
+
 	private static final int RECORDER_SAMPLERATE = 8000;
 	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
 	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
 	private AudioRecord recorder = null;
 	private Thread recordingThread = null;
 	private boolean isRecording = false;
-	
-	private LinearLayout ll;
-	private FragmentActivity fa;
-	
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		ll = (LinearLayout) inflater.inflate(R.layout.activity_main, container, false);
-    
-    return ll;
+
+		View rootView = inflater.inflate(R.layout.audio_record, container, false);
+		return rootView;
 	}
-	
+
+
 	@Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        
+        super.onActivityCreated(savedInstanceState);
 		setButtonHandlers();
 	    enableButtons(false);
 
@@ -150,16 +148,7 @@ private void stopRecording() {
         recorder.release();
         recorder = null;
         recordingThread = null;
-    }   
+    }
 }
-
-@Override
-public void onDestroyView() {
-    super.onDestroyView();
-    Fragment f = (Fragment) getFragmentManager().findFragmentById(R.id.fragment1);
-    if (f != null) 
-        getFragmentManager().beginTransaction().remove(f).commit();
-}
-
 
 }
